@@ -8,7 +8,7 @@
 
     <ul class="navbar-nav mr-auto">
         <li class="nav-item">
-            {% if not perms.demo_app.add_article %}
+            {% if not perms.demo_app.add_team %}
                 <a class="nav-link disabled" href="{% url 'demo_app:newteam' %}">New Team</a>
             {% else %}
                 <a class="nav-link" href="{% url 'demo_app:newteam' %}">New team</a>
@@ -18,17 +18,20 @@
 
     <ul class="navbar-nav mr-auto">
         <li class="nav-item">
-            {% if not perms.demo_app.add_article %}
+            {% if not perms.demo_app.add_player %}
                 <a class="nav-link disabled" href="{% url 'demo_app:newplayer' %}">New player</a>
             {% else %}
                 <a class="nav-link" href="{% url 'demo_app:newplayer' %}">New player</a>
             {% endif %}
         </li>
         <li class="nav-item">
-            {% if not perms.demo_app.add_article %}
-                <a class="nav-link disabled" href="{% url 'demo_app:players' %}">All players</a>
-            {% else %}
                 <a class="nav-link" href="{% url 'demo_app:players' %}">All players</a>
+        </li>
+        <li class="nav-item">
+            {% if not perms.demo_app.change_team %}
+                <a class="nav-link disabled" href="{% url 'demo_app:changeteams' %}">Player transfer</a>
+            {% else %}
+                <a class="nav-link" href="{% url 'demo_app:changeteams' %}">Player transfer</a>
             {% endif %}
         </li>
     </ul>

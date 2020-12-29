@@ -21,7 +21,8 @@ urlpatterns = [
     path('player/new/', views.newPlayer, name='newplayer'),
     path('players/goal/<int:id>/', views.goal, name='goal'),
     path('players/assist/<int:id>/', views.assist, name='assist'),
-    path('players/newteam/<int:idPlayer>/<int:idTeam>/' ,views.addtoteam, name='addtoteam')
+    path('players/newteam/' ,views.addtoteam, name='addtoteam'),
+    path('changeteams', views.changeteams, name='changeteams')
 
 
 

@@ -138,9 +138,11 @@ def players(req):
     return render(req, 'players.html', {'players': tmp})
 
 
-def addtoteam(req, idPlayer, idTeam):
-    team = Team.objects.get(id=idTeam)
-    player = Player.objects.get(id=idPlayer)
+def addtoteam(req):
+    teamID = req.GET.get('teamID')
+    playerID = req.GET.get('playerID')
+    team = get_object_or_404(Team, id=teamID)
+    player = get_object_or_404(Player, id=playerID)
     player.team = team
     player.save()
     return render(req, 'player.html', {'player': player})
@@ -207,3 +209,7 @@ def deleteteam(req,id):
     tmp.delete()
     tmp = Team.objects.all()
     return render(req, 'teams.html', {'teams': tmp})
+
+@permission_required('demo_app.change_team')
+def changeteams(req):
+    return render(req, 'changeteams.html')
