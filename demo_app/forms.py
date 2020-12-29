@@ -1,10 +1,18 @@
 from django.forms import ModelForm, Form
 import django.forms as f
-from .models import Article
+from .models import Team, Player
 
-
-class ArticleForm(ModelForm):
+class TeamForm(ModelForm):
     class Meta:
-        model = Article
-        fields = ['title', 'content']
+        model = Team
+        fields = ['name']
 
+class PlayerForm(ModelForm):
+    class Meta:
+        model = Player
+        fields = ['name', 'surname', 'age']
+
+class EditPlayerForm(ModelForm):
+    class Meta:
+        model = Player
+        fields = ['name', 'surname','age', 'team', 'goals', 'assists']
