@@ -1,0 +1,19 @@
+{%  extends 'master.html' %}
+
+{% block title %}
+    Teams
+{% endblock %}
+
+{%  block content %}
+    <div class="list-group">
+        {% for player in players %}
+            <a class="list-group-item list-group-item-action" href="{% url 'demo_app:player' player.id %}" >
+                {{ player.name }}
+                {{ player.surname }}
+                (Tim :
+                {{ player.team }})
+
+            </a>
+        {% endfor %}
+    </div>
+{% endblock %}

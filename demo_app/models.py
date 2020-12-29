@@ -12,15 +12,15 @@ class Team(models.Model):
         return self.wins * 3 + self.draws
 
     def __str__(self):
-        return self.name + ' poeni : '+str(self.getPoints())
+        return self.name
 
 class Player(models.Model):
     name = models.CharField(max_length=30)
     surname = models.CharField(max_length=30)
     age = models.IntegerField()
-    goals = models.IntegerField()
-    assists = models.IntegerField()
-    team = models.ForeignKey(Team, on_delete=models.CASCADE)
+    goals = models.IntegerField(default=0)
+    assists = models.IntegerField(default=0)
+    team = models.ForeignKey(Team, on_delete=models.CASCADE,default=None, null=True, blank=True)
 
     def __str__(self):
         return self.name + ' ' + self.surname + '-' + str(self.age)

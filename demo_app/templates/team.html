@@ -1,10 +1,69 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends 'master.html' %}
 
-</body>
-</html>
+{% block content %}
+
+    <div class="card">
+        <div class="card-header">
+            <h1>
+                {{ team.name }}
+                {% if perms.demo_app.edit_team %}
+                    <a href="{% url 'demo_app:editteam' team.id %}">
+                        <span class="btn btn-primary">Edit</span>
+                    </a>
+                {% endif %}
+                {% if perms.demo_app.delete_team %}
+                    <a href="{% url 'demo_app:deleteteam' team.id %}">
+                        <span class="btn btn-danger">Delete</span>
+                    </a>
+                {% endif %}
+            </h1>
+        </div>
+        <div class="card-body">
+            <blockquote class="blockquote mb-0">
+
+                <footer class="blockquote-footer">
+                    Wins
+                    <cite title="Source Title">
+                        {{ team.wins }}
+                    </cite>
+                </footer>
+                <footer class="blockquote-footer">
+                    Draws
+                    <cite title="Source Title">
+                        {{ team.draws }}
+                    </cite>
+                </footer>
+                <footer class="blockquote-footer">
+                    Losses
+                    <cite title="Source Title">
+                        {{ team.losses }}
+                    </cite>
+                </footer>
+                <footer class="blockquote-footer">
+                    Points
+                    <cite title="Source Title">
+                        {{ team.getPoints }}
+                    </cite>
+                </footer>
+            </blockquote>
+        </div>
+        <button type="button" class="btn btn-primary"><a href="{% url 'demo_app:addwin' team.id %}">
+                        <span class="badge badge-primary">WIN</span>
+                    </a></button>
+        <button type="button" class="btn btn-primary"><a href="{% url 'demo_app:adddraw' team.id %}">
+                        <span class="badge badge-primary">DRAW</span>
+                    </a></button>
+        <button type="button" class="btn btn-primary"><a href="{% url 'demo_app:addloss' team.id %}">
+                        <span class="badge badge-primary">LOSS</span>
+                    </a></button>
+    </div>
+    <div class="list-group">
+        {% for player in players %}
+            <a class="list-group-item list-group-item-action" href="{% url 'demo_app:player' player.id %}">
+                {{ player.name }}
+                {{ player.surname }}
+                {{  player.getPoints }}
+            </a>
+        {% endfor %}
+    </div>
+{% endblock %}
